@@ -1,0 +1,50 @@
+INFO: Seed: 1705398815
+INFO: Loaded 1 modules   (1 inline 8-bit counters): 1 [0x795e00, 0x795e01), 
+INFO: Loaded 1 PC tables (1 PCs): 1 [0x570c00,0x570c10), 
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 4096 bytes
+INFO: A corpus is not provided, starting from an empty corpus
+#2	INITED cov: 1 ft: 1 corp: 1/1b lim: 4 exec/s: 0 rss: 35Mb
+
+=================================================================
+==6525==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 2 byte(s) in 1 object(s) allocated from:
+    #0 0x517e68 in __interceptor_malloc /home/thorbjoern/llvm/projects/compiler-rt/lib/asan/asan_malloc_linux.cc:88
+    #1 0x553c20 in LLVMFuzzerTestOneInput (/home/thorbjoern/CodeIntelligence/ci-tools/tests/ci-fuzzing-targets/fuzz_target_without_dbgsym+0x553c20)
+    #2 0x42e787 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:517
+    #3 0x4344bb in fuzzer::Fuzzer::RunOne(unsigned char const*, unsigned long, bool, fuzzer::InputInfo*, bool*) /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:442
+    #4 0x4344bb in fuzzer::Fuzzer::MutateAndTestOne() /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:651
+    #5 0x435d53 in fuzzer::Fuzzer::Loop(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, fuzzer::fuzzer_allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&) /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:773
+    #6 0x427e7e in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:754
+    #7 0x41d342 in main /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20
+    #8 0x7f3d3354382f in __libc_start_main /build/glibc-Cl5G7W/glibc-2.23/csu/../csu/libc-start.c:291
+
+Direct leak of 1 byte(s) in 1 object(s) allocated from:
+    #0 0x517e68 in __interceptor_malloc /home/thorbjoern/llvm/projects/compiler-rt/lib/asan/asan_malloc_linux.cc:88
+    #1 0x553c20 in LLVMFuzzerTestOneInput (/home/thorbjoern/CodeIntelligence/ci-tools/tests/ci-fuzzing-targets/fuzz_target_without_dbgsym+0x553c20)
+    #2 0x42e787 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:517
+    #3 0x43212a in fuzzer::Fuzzer::RunOne(unsigned char const*, unsigned long, bool, fuzzer::InputInfo*, bool*) [clone .constprop.322] /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:442
+    #4 0x433f62 in fuzzer::Fuzzer::ReadAndExecuteSeedCorpora(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, fuzzer::fuzzer_allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&) /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:708
+    #5 0x435c12 in fuzzer::Fuzzer::Loop(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, fuzzer::fuzzer_allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&) /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:741
+    #6 0x427e7e in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:754
+    #7 0x41d342 in main /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20
+    #8 0x7f3d3354382f in __libc_start_main /build/glibc-Cl5G7W/glibc-2.23/csu/../csu/libc-start.c:291
+
+Direct leak of 1 byte(s) in 1 object(s) allocated from:
+    #0 0x517e68 in __interceptor_malloc /home/thorbjoern/llvm/projects/compiler-rt/lib/asan/asan_malloc_linux.cc:88
+    #1 0x553c20 in LLVMFuzzerTestOneInput (/home/thorbjoern/CodeIntelligence/ci-tools/tests/ci-fuzzing-targets/fuzz_target_without_dbgsym+0x553c20)
+    #2 0x42e787 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:517
+    #3 0x433815 in fuzzer::Fuzzer::ReadAndExecuteSeedCorpora(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, fuzzer::fuzzer_allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&) /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:703
+    #4 0x435c12 in fuzzer::Fuzzer::Loop(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, fuzzer::fuzzer_allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&) /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:741
+    #5 0x427e7e in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:754
+    #6 0x41d342 in main /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20
+    #7 0x7f3d3354382f in __libc_start_main /build/glibc-Cl5G7W/glibc-2.23/csu/../csu/libc-start.c:291
+
+SUMMARY: AddressSanitizer: 4 byte(s) leaked in 3 allocation(s).
+INFO: to ignore leaks on libFuzzer side use -detect_leaks=0.
+
+MS: 1 InsertByte-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc
+0x31,0xa,
+1\x0a
+artifact_prefix='./'; Test unit written to ./leak-e5fa44f2b31c1fb553b6021e7360d07d5d91ff5e
+Base64: MQo=

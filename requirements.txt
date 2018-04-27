@@ -1,0 +1,10 @@
+jsonschema
+pyyaml
+wllvm
+scan-build
+pytest-pylint
+pylint
+websockets
+jsonrpcserver
+jsonrpcclient
+pytest

@@ -1,0 +1,36 @@
+INFO: Seed: 3980404366
+INFO: Loaded 1 modules   (103 guards): 103 [0x59b4b0, 0x59b64c), 
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 4096 bytes
+=================================================================
+==24029==ERROR: AddressSanitizer: strncpy-param-overlap: memory ranges [0x7fff39164484,0x7fff39164490) and [0x7fff39164480, 0x7fff3916448c) overlap
+    #0 0x47bf28 in __interceptor_strncpy /home/thorbjoern/llvm/projects/compiler-rt/lib/asan/asan_interceptors.cc:437
+    #1 0x557566 in LLVMFuzzerTestOneInput /home/thorbjoern/CodeIntelligence/ci-tools/tests/ci-fuzzing-targets/fuzz_target_string_mem_overlap.cc:7:3
+    #2 0x42fb97 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:517
+    #3 0x434c25 in fuzzer::Fuzzer::ReadAndExecuteSeedCorpora(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, fuzzer::fuzzer_allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&) /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:703
+    #4 0x437022 in fuzzer::Fuzzer::Loop(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, fuzzer::fuzzer_allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&) /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:741
+    #5 0x42927e in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:754
+    #6 0x41e742 in main /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20
+    #7 0x7f558635f82f in __libc_start_main /build/glibc-Cl5G7W/glibc-2.23/csu/../csu/libc-start.c:291
+    #8 0x41e7b8 in _start (/home/thorbjoern/CodeIntelligence/ci-tools/tests/ci-fuzzing-targets/fuzz_target_string_mem_overlap+0x41e7b8)
+
+Address 0x7fff39164484 is located in stack of thread T0 at offset 36 in frame
+    #0 0x55729f in LLVMFuzzerTestOneInput /home/thorbjoern/CodeIntelligence/ci-tools/tests/ci-fuzzing-targets/fuzz_target_string_mem_overlap.cc:5
+
+  This frame has 1 object(s):
+    [32, 48) 's' (line 6) <== Memory access at offset 36 is inside this variable
+HINT: this may be a false positive if your program uses some custom stack unwind mechanism or swapcontext
+      (longjmp and C++ exceptions *are* supported)
+Address 0x7fff39164480 is located in stack of thread T0 at offset 32 in frame
+    #0 0x55729f in LLVMFuzzerTestOneInput /home/thorbjoern/CodeIntelligence/ci-tools/tests/ci-fuzzing-targets/fuzz_target_string_mem_overlap.cc:5
+
+  This frame has 1 object(s):
+    [32, 48) 's' (line 6) <== Memory access at offset 32 is inside this variable
+HINT: this may be a false positive if your program uses some custom stack unwind mechanism or swapcontext
+      (longjmp and C++ exceptions *are* supported)
+SUMMARY: AddressSanitizer: strncpy-param-overlap /home/thorbjoern/llvm/projects/compiler-rt/lib/asan/asan_interceptors.cc:437 in __interceptor_strncpy
+==24029==ABORTING
+MS: 0 ; base unit: 0000000000000000000000000000000000000000
+
+
+artifact_prefix='./'; Test unit written to ./crash-da39a3ee5e6b4b0d3255bfef95601890afd80709
+Base64: 

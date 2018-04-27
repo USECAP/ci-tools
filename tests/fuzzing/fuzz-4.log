@@ -1,0 +1,31 @@
+INFO: Seed: 1550813255
+INFO: Loaded 1 modules   (5 guards): 5 [0x795e00, 0x795e14), 
+INFO: Loaded 1 modules   (5 inline 8-bit counters): 5 [0x795e14, 0x795e19), 
+INFO: Loaded 1 PC tables (5 PCs): 5 [0x570f58,0x570fa8), 
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 4096 bytes
+INFO: A corpus is not provided, starting from an empty corpus
+#2	INITED cov: 3 ft: 3 corp: 1/1b lim: 4 exec/s: 0 rss: 34Mb
+ALARM: working on the last Unit for 1 seconds
+       and the timeout value is 1 (use -timeout=N to change)
+MS: 1 InsertRepeatedBytes-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc
+0xa,0x49,0x49,0x49,0x49,0x49,0x49,0x49,0x49,0x49,0x49,
+\x0aIIIIIIIIII
+artifact_prefix='./'; Test unit written to ./timeout-29a3cc9dd71b2412f203040f2ef707702c55d30a
+Base64: CklJSUlJSUlJSUk=
+==18331== ERROR: libFuzzer: timeout after 1 seconds
+    #0 0x523db3 in __sanitizer_print_stack_trace /home/thorbjoern/llvm/projects/compiler-rt/lib/asan/asan_stack.cc:38
+    #1 0x42e268 in fuzzer::Fuzzer::AlarmCallback() /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:292
+    #2 0x42e268 in fuzzer::Fuzzer::StaticAlarmCallback() /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:201
+    #3 0x7f6f1fe2638f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1138f)
+    #4 0x553da2 in do_smth(unsigned char const*, unsigned long) (/home/thorbjoern/CodeIntelligence/ci-tools/tests/ci-fuzzing-targets/fuzz_target_timeout+0x553da2)
+    #5 0x553f34 in LLVMFuzzerTestOneInput (/home/thorbjoern/CodeIntelligence/ci-tools/tests/ci-fuzzing-targets/fuzz_target_timeout+0x553f34)
+    #6 0x42e787 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:517
+    #7 0x4344bb in fuzzer::Fuzzer::RunOne(unsigned char const*, unsigned long, bool, fuzzer::InputInfo*, bool*) /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:442
+    #8 0x4344bb in fuzzer::Fuzzer::MutateAndTestOne() /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:651
+    #9 0x435d53 in fuzzer::Fuzzer::Loop(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, fuzzer::fuzzer_allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&) /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:773
+    #10 0x427e7e in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:754
+    #11 0x41d342 in main /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20
+    #12 0x7f6f1f44882f in __libc_start_main /build/glibc-Cl5G7W/glibc-2.23/csu/../csu/libc-start.c:291
+    #13 0x41d3b8 in _start (/home/thorbjoern/CodeIntelligence/ci-tools/tests/ci-fuzzing-targets/fuzz_target_timeout+0x41d3b8)
+
+SUMMARY: libFuzzer: timeout

@@ -1,0 +1,43 @@
+Requirements
+------------
+
+You need Python 3.5 or later to run ci_tools
+
+In Ubuntu, Mint and Debian you can install Python 3 like this:
+
+    $ sudo apt-get install python3 python3-pip
+
+For other Linux flavors, OS X and Windows, packages are available at
+
+  http://www.python.org/getit/
+
+Quick start
+-----------
+
+ci_tools can be installed using pip:
+
+    $ pip3 install --user -U .
+
+If you want to run the latest version of the code, you can install from git:
+
+    $ pip3 install --user -U git@gitlab.com:code-intelligence/ci-frontend.git
+
+If you want to install the binaries in a specific folder:
+    $ python setup.py install --install-scripts /path/to/bin
+Note, that the path needs to be in $PATH before running/testing the tools
+
+If you are a developer, you should install this in editable mode:
+
+    $ python setup.py develop
+
+For testing please execute after installing:
+
+    $ python setup.py pytest
+
+If you want to see the code coverage, just run:
+    $ pytest --cov
+
+    Before running pytest once, you need to run the pytest from setup to fulfil
+    all pytest requirements
+
+Note that in all cases ~/.local/bin needs to be in $PATH

@@ -1,0 +1,4 @@
+scan-build-*
+*.json
+*.a
+*.o

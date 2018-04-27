@@ -1,0 +1,83 @@
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 4096 bytes
+INFO: A corpus is not provided, starting from an empty corpus
+#3268	TEMP_MAX_LEN: 6 (1000 1263)
+#8148	TEMP_MAX_LEN: 8 (1000 6143)
+#11186	TEMP_MAX_LEN: 11 (1000 8181)
+#26048	TEMP_MAX_LEN: 14 (1000 23043)
+#31302	TEMP_MAX_LEN: 17 (1000 28297)
+#40940	TEMP_MAX_LEN: 21 (1000 36935)
+#68504	TEMP_MAX_LEN: 25 (1000 64499)
+=================================================================
+==4022==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x629000009748 at pc 0x0000004e0cc5 bp 0x7ffc98389400 sp 0x7ffc98388bb0
+READ of size 39578 at 0x629000009748 thread T0
+    #0 0x4e0cc4 in __asan_memcpy /home/user/workspace/llvm/projects/compiler-rt/lib/asan/asan_interceptors_memintrinsics.cc:23
+    #1 0x52a086 in tls1_process_heartbeat /home/user/workspace/fuzzer-test-suite/BUILD/ssl/t1_lib.c:2586:3
+    #2 0x59ae67 in ssl3_read_bytes /home/user/workspace/fuzzer-test-suite/BUILD/ssl/s3_pkt.c:1092:4
+    #3 0x59f7a1 in ssl3_get_message /home/user/workspace/fuzzer-test-suite/BUILD/ssl/s3_both.c:457:7
+    #4 0x568d94 in ssl3_get_client_hello /home/user/workspace/fuzzer-test-suite/BUILD/ssl/s3_srvr.c:941:4
+    #5 0x564ced in ssl3_accept /home/user/workspace/fuzzer-test-suite/BUILD/ssl/s3_srvr.c:357:9
+    #6 0x51d462 in LLVMFuzzerTestOneInput /home/user/workspace/fuzzer-test-suite/openssl-1.0.1f/target.cc:34:3
+    #7 0x869f46 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /home/user/workspace/fuzzer-test-suite/./Fuzzer/FuzzerLoop.cpp:515:13
+    #8 0x8697ab in fuzzer::Fuzzer::RunOne(unsigned char const*, unsigned long, bool, fuzzer::InputInfo*, bool*) /home/user/workspace/fuzzer-test-suite/./Fuzzer/FuzzerLoop.cpp:440:3
+    #9 0x86aee6 in fuzzer::Fuzzer::MutateAndTestOne() /home/user/workspace/fuzzer-test-suite/./Fuzzer/FuzzerLoop.cpp:648:19
+    #10 0x86b885 in fuzzer::Fuzzer::Loop(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, fuzzer::fuzzer_allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&) /home/user/workspace/fuzzer-test-suite/./Fuzzer/FuzzerLoop.cpp:775:5
+    #11 0x861b40 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /home/user/workspace/fuzzer-test-suite/./Fuzzer/FuzzerDriver.cpp:754:6
+    #12 0x85d120 in main /home/user/workspace/fuzzer-test-suite/./Fuzzer/FuzzerMain.cpp:20:10
+    #13 0x708f4c8982b0 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x202b0)
+    #14 0x420059 in _start (/home/user/workspace/fuzzer-test-suite/openssl-1.0.1f-libfuzzer+0x420059)
+
+0x629000009748 is located 0 bytes to the right of 17736-byte region [0x629000005200,0x629000009748)
+allocated by thread T0 here:
+    #0 0x4e1e28 in __interceptor_malloc /home/user/workspace/llvm/projects/compiler-rt/lib/asan/asan_malloc_linux.cc:88
+    #1 0x5d0c9d in CRYPTO_malloc /home/user/workspace/fuzzer-test-suite/BUILD/crypto/mem.c:308:8
+    #2 0x5a0d59 in freelist_extract /home/user/workspace/fuzzer-test-suite/BUILD/ssl/s3_both.c:708:12
+    #3 0x5a0d59 in ssl3_setup_read_buffer /home/user/workspace/fuzzer-test-suite/BUILD/ssl/s3_both.c:770
+    #4 0x5a135e in ssl3_setup_buffers /home/user/workspace/fuzzer-test-suite/BUILD/ssl/s3_both.c:827:7
+    #5 0x5658dd in ssl3_accept /home/user/workspace/fuzzer-test-suite/BUILD/ssl/s3_srvr.c:292:9
+    #6 0x51d462 in LLVMFuzzerTestOneInput /home/user/workspace/fuzzer-test-suite/openssl-1.0.1f/target.cc:34:3
+    #7 0x869f46 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /home/user/workspace/fuzzer-test-suite/./Fuzzer/FuzzerLoop.cpp:515:13
+    #8 0x86b405 in fuzzer::Fuzzer::ReadAndExecuteSeedCorpora(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, fuzzer::fuzzer_allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&) /home/user/workspace/fuzzer-test-suite/./Fuzzer/FuzzerLoop.cpp:701:3
+    #9 0x86b721 in fuzzer::Fuzzer::Loop(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, fuzzer::fuzzer_allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&) /home/user/workspace/fuzzer-test-suite/./Fuzzer/FuzzerLoop.cpp:739:3
+    #10 0x861b40 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /home/user/workspace/fuzzer-test-suite/./Fuzzer/FuzzerDriver.cpp:754:6
+    #11 0x85d120 in main /home/user/workspace/fuzzer-test-suite/./Fuzzer/FuzzerMain.cpp:20:10
+    #12 0x708f4c8982b0 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x202b0)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow /home/user/workspace/llvm/projects/compiler-rt/lib/asan/asan_interceptors_memintrinsics.cc:23 in __asan_memcpy
+Shadow bytes around the buggy address:
+  0x0c527fff9290: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c527fff92a0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c527fff92b0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c527fff92c0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c527fff92d0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=>0x0c527fff92e0: 00 00 00 00 00 00 00 00 00[fa]fa fa fa fa fa fa
+  0x0c527fff92f0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c527fff9300: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c527fff9310: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c527fff9320: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c527fff9330: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==4022==ABORTING
+MS: 1 CMP- DE: "\x01\x00\x00\x00\x00\x00\x00\x01"-; base unit: 73f2b8a6b8505a4b7446f2fafc9670bdfee304ed
+0x18,0x3,0x25,0x0,0x1,0x1,0x3,0x25,0x0,0x5,0x16,0x1,0x0,0x0,0x0,0x0,0x0,0x0,0x1,0x0,
+\x18\x03%\x00\x01\x01\x03%\x00\x05\x16\x01\x00\x00\x00\x00\x00\x00\x01\x00
+artifact_prefix='./'; Test unit written to ./crash-ee452e5a55342c5f59acdf4a0e6b95c72c4ce2f7
+Base64: GAMlAAEBAyUABRYBAAAAAAAAAQA=
+COVERAGE:

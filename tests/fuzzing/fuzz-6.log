@@ -1,0 +1,34 @@
+INFO: Seed: 1320105583
+INFO: Loaded 1 modules   (103 guards): 103 [0x59a3e0, 0x59a57c), 
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 4096 bytes
+=================================================================
+==22267==ERROR: AddressSanitizer: alloc-dealloc-mismatch (operator new [] vs free) on 0x602000000030
+    #0 0x519118 in __interceptor_cfree.localalias.0 /home/thorbjoern/llvm/projects/compiler-rt/lib/asan/asan_malloc_linux.cc:76
+    #1 0x557305 in LLVMFuzzerTestOneInput /home/thorbjoern/CodeIntelligence/ci-tools/tests/ci-fuzzing-targets/fuzz_target_alloc_types.cc:6:3
+    #2 0x42fb97 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:517
+    #3 0x434c25 in fuzzer::Fuzzer::ReadAndExecuteSeedCorpora(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, fuzzer::fuzzer_allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&) /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:703
+    #4 0x437022 in fuzzer::Fuzzer::Loop(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, fuzzer::fuzzer_allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&) /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:741
+    #5 0x42927e in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:754
+    #6 0x41e742 in main /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20
+    #7 0x7fc0b13cc82f in __libc_start_main /build/glibc-Cl5G7W/glibc-2.23/csu/../csu/libc-start.c:291
+    #8 0x41e7b8 in _start (/home/thorbjoern/CodeIntelligence/ci-tools/tests/ci-fuzzing-targets/fuzz_target_alloc_types+0x41e7b8)
+
+0x602000000030 is located 0 bytes inside of 1-byte region [0x602000000030,0x602000000031)
+allocated by thread T0 here:
+    #0 0x550ea8 in operator new[](unsigned long) /home/thorbjoern/llvm/projects/compiler-rt/lib/asan/asan_new_delete.cc:95
+    #1 0x5572f8 in LLVMFuzzerTestOneInput /home/thorbjoern/CodeIntelligence/ci-tools/tests/ci-fuzzing-targets/fuzz_target_alloc_types.cc:5:18
+    #2 0x42fb97 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:517
+    #3 0x434c25 in fuzzer::Fuzzer::ReadAndExecuteSeedCorpora(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, fuzzer::fuzzer_allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&) /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:703
+    #4 0x437022 in fuzzer::Fuzzer::Loop(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, fuzzer::fuzzer_allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&) /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:741
+    #5 0x42927e in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:754
+    #6 0x41e742 in main /home/thorbjoern/llvm/projects/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20
+    #7 0x7fc0b13cc82f in __libc_start_main /build/glibc-Cl5G7W/glibc-2.23/csu/../csu/libc-start.c:291
+
+SUMMARY: AddressSanitizer: alloc-dealloc-mismatch /home/thorbjoern/llvm/projects/compiler-rt/lib/asan/asan_malloc_linux.cc:76 in __interceptor_cfree.localalias.0
+==22267==HINT: if you don't care about these errors you may set ASAN_OPTIONS=alloc_dealloc_mismatch=0
+==22267==ABORTING
+MS: 0 ; base unit: 0000000000000000000000000000000000000000
+
+
+artifact_prefix='./'; Test unit written to ./crash-da39a3ee5e6b4b0d3255bfef95601890afd80709
+Base64: 

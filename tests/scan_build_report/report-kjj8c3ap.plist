@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+ <key>clang_version</key>
+<string>clang version 6.0.0 (https://github.com/llvm-mirror/clang.git 51bc5395c247b7318278be03615f8e4ef26ea5e0) (https://github.com/llvm-mirror/llvm.git 264f0e710772491b0457b02b9661d223f3ec42a1)</string>
+ <key>files</key>
+ <array>
+  <string>/home/user/workspace/code_analysis/repositories/work/build/x86_64-unknown-linux-gnu/libxml2/2.9.6-6ab29482b85/valid.c</string>
+ </array>
+ <key>diagnostics</key>
+ <array>
+  <dict>
+   <key>path</key>
+   <array>
+    <dict>
+     <key>kind</key><string>event</string>
+     <key>location</key>
+     <dict>
+      <key>line</key><integer>5310</integer>
+      <key>col</key><integer>29</integer>
+      <key>file</key><integer>0</integer>
+     </dict>
+     <key>ranges</key>
+     <array>
+       <array>
+        <dict>
+         <key>line</key><integer>5310</integer>
+         <key>col</key><integer>35</integer>
+         <key>file</key><integer>0</integer>
+        </dict>
+        <dict>
+         <key>line</key><integer>5310</integer>
+         <key>col</key><integer>76</integer>
+         <key>file</key><integer>0</integer>
+        </dict>
+       </array>
+     </array>
+     <key>depth</key><integer>0</integer>
+     <key>extended_message</key>
+     <string>Value stored to &apos;ret&apos; is never read</string>
+     <key>message</key>
+     <string>Value stored to &apos;ret&apos; is never read</string>
+    </dict>
+   </array>
+   <key>description</key><string>Value stored to &apos;ret&apos; is never read</string>
+   <key>category</key><string>Dead store</string>
+   <key>type</key><string>Dead assignment</string>
+   <key>check_name</key><string>deadcode.DeadStores</string>
+   <!-- This hash is experimental and going to change! -->
+   <key>issue_hash_content_of_line_in_context</key><string>f77d101cf44a58f94e13646c5b6ca6c4</string>
+  <key>issue_context_kind</key><string>function</string>
+  <key>issue_context</key><string>xmlValidateElementContent</string>
+  <key>issue_hash_function_offset</key><string>66</string>
+  <key>location</key>
+  <dict>
+   <key>line</key><integer>5310</integer>
+   <key>col</key><integer>29</integer>
+   <key>file</key><integer>0</integer>
+  </dict>
+  </dict>
+  <dict>
+   <key>path</key>
+   <array>
+    <dict>
+     <key>kind</key><string>event</string>
+     <key>location</key>
+     <dict>
+      <key>line</key><integer>5314</integer>
+      <key>col</key><integer>8</integer>
+      <key>file</key><integer>0</integer>
+     </dict>
+     <key>ranges</key>
+     <array>
+       <array>
+        <dict>
+         <key>line</key><integer>5314</integer>
+         <key>col</key><integer>14</integer>
+         <key>file</key><integer>0</integer>
+        </dict>
+        <dict>
+         <key>line</key><integer>5314</integer>
+         <key>col</key><integer>56</integer>
+         <key>file</key><integer>0</integer>
+        </dict>
+       </array>
+     </array>
+     <key>depth</key><integer>0</integer>
+     <key>extended_message</key>
+     <string>Value stored to &apos;ret&apos; is never read</string>
+     <key>message</key>
+     <string>Value stored to &apos;ret&apos; is never read</string>
+    </dict>
+   </array>
+   <key>description</key><string>Value stored to &apos;ret&apos; is never read</string>
+   <key>category</key><string>Dead store</string>
+   <key>type</key><string>Dead assignment</string>
+   <key>check_name</key><string>deadcode.DeadStores</string>
+   <!-- This hash is experimental and going to change! -->
+   <key>issue_hash_content_of_line_in_context</key><string>eb6867d6bd723ba716b7a72609358893</string>
+  <key>issue_context_kind</key><string>function</string>
+  <key>issue_context</key><string>xmlValidateElementContent</string>
+  <key>issue_hash_function_offset</key><string>70</string>
+  <key>location</key>
+  <dict>
+   <key>line</key><integer>5314</integer>
+   <key>col</key><integer>8</integer>
+   <key>file</key><integer>0</integer>
+  </dict>
+  </dict>
+  <dict>
+   <key>path</key>
+   <array>
+    <dict>
+     <key>kind</key><string>event</string>
+     <key>location</key>
+     <dict>
+      <key>line</key><integer>6164</integer>
+      <key>col</key><integer>6</integer>
+      <key>file</key><integer>0</integer>
+     </dict>
+     <key>ranges</key>
+     <array>
+       <array>
+        <dict>
+         <key>line</key><integer>6164</integer>
+         <key>col</key><integer>13</integer>
+         <key>file</key><integer>0</integer>
+        </dict>
+        <dict>
+         <key>line</key><integer>6164</integer>
+         <key>col</key><integer>29</integer>
+         <key>file</key><integer>0</integer>
+        </dict>
+       </array>
+     </array>
+     <key>depth</key><integer>0</integer>
+     <key>extended_message</key>
+     <string>Value stored to &apos;cont&apos; is never read</string>
+     <key>message</key>
+     <string>Value stored to &apos;cont&apos; is never read</string>
+    </dict>
+   </array>
+   <key>description</key><string>Value stored to &apos;cont&apos; is never read</string>
+   <key>category</key><string>Dead store</string>
+   <key>type</key><string>Dead assignment</string>
+   <key>check_name</key><string>deadcode.DeadStores</string>
+   <!-- This hash is experimental and going to change! -->
+   <key>issue_hash_content_of_line_in_context</key><string>5ce058676862fcd97b27ed90010a6899</string>
+  <key>issue_context_kind</key><string>function</string>
+  <key>issue_context</key><string>xmlValidateOneElement</string>
+  <key>issue_hash_function_offset</key><string>208</string>
+  <key>location</key>
+  <dict>
+   <key>line</key><integer>6164</integer>
+   <key>col</key><integer>6</integer>
+   <key>file</key><integer>0</integer>
+  </dict>
+  </dict>
+ </array>
+</dict>
+</plist>
